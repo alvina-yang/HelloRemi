@@ -39,19 +39,9 @@ def create_person():
 
     # Example payload structure, update it based on your Kintone app structure
     payload = {
-        'app': 1,  # Replace with your Kintone app ID
+        'app': 'KINTONE_APP_ID',  # Replace with your Kintone app ID
         'record': {
-            'Name': {'value': data['name']},
-            'Age': {'value': data['age']},
-            'DateOfBirth': {'value': data['dob']},
-            'FamilyBackground': {'value': data['family_background']},
-            'HobbiesAndInterests': {'value': data['hobbies_and_interests']},
-            'MemorableQuotes': {'value': data['memorable_quotes']},
-            'HealthAndWellness': {'value': data['health_and_wellness']},
-            'Relationship': {'value': data['relationship']},
-            'MajorEvent': {'value': data['major_event']},
-            'AdditionalInformation': {'value': data['additional_information']},
-            'recentChatHistory': {'value': data['recent_chat_history']},
+            'Prompt': {'prompt': data['prompt']},
         }
     }
 
