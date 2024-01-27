@@ -1,0 +1,11 @@
+Model Information:
+* title:	crystal flowers
+* source:	https://sketchfab.com/3d-models/crystal-flowers-2d8bcf463c9d4128bdc1a7abc7096d4d
+* author:	C.anton (https://sketchfab.com/C.anton)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "crystal flowers" (https://sketchfab.com/3d-models/crystal-flowers-2d8bcf463c9d4128bdc1a7abc7096d4d) by C.anton (https://sketchfab.com/C.anton) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

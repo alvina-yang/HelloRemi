@@ -6,6 +6,8 @@ export default {
   ],
   theme: {
     extend: {
+      textShadow: ['hover'], // Enable hover for text shadow if you have a plugin for text shadows
+      transform: ['hover'], // Enable hover for transform
       colors: {
         primary: '#1c2830',
         secondary: '#354955',

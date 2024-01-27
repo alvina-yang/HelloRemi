@@ -1,3 +1,4 @@
+import { leaves, mugunghwa, pinkwhite, sunflower } from "../assets/Assets";
 const members = [
     {
         name: "Jane Doe",
@@ -36,4 +37,4 @@ const members = [
     }
 ];
 
-export {members};
+export {members, leaves, mugunghwa, pinkwhite, sunflower};
