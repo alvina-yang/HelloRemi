@@ -92,6 +92,10 @@ def get_person(name):
     else:
         return jsonify({'message': 'Person not found'}), 404
 
+@app.route('/', methods=['GET'])
+def print_hello():
+    return 'Hello world!'
+
 # Route to delete a person object
 @app.route('/api/persons/<string:name>', methods=['DELETE'])
 def delete_person(name):
