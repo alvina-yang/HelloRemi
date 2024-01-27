@@ -1,13 +1,34 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-
+import TextTransition, { presets } from 'react-text-transition';
+import { useState, useEffect } from 'react';
 const SignIn = () => {
   const navigate = useNavigate();
-
+  const [index, setIndex] = useState(0);
+  const TEXTS = [
+    "a new generation of remembering",
+     "innvoative reminiscence therapy",
+      "a way to help your loved ones",
+       "HelloRemi!"];
   const handleSignIn = () => {
     navigate('/home');
   };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIndex((prevIndex) => {
+        if (prevIndex < TEXTS.length - 1) {
+          return prevIndex + 1;
+        } else {
+          clearInterval(intervalId); // Clear interval when reaching the last text
+          return prevIndex;
+        }
+      });
+    }, 3000); // every 3 seconds
+    return () => clearInterval(intervalId);
+  }, []);
+
 
   return (
     <Parallax pages={3} className='bg-primary'>
@@ -17,9 +38,21 @@ const SignIn = () => {
         speed={0.5}
         style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
       >
-        <h1 className="text-5xl text-h1text">Welcome to HelloRemi!</h1>
+        <h1 className="text-5xl z-1000 text-h1text">Welcome to...</h1>
       </ParallaxLayer>
-
+      <ParallaxLayer
+        offset={0.2}
+        speed={0.4}
+        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: 'full' }}
+      >
+        <h1>
+        <TextTransition
+        springConfig={presets.default}
+        className="text-4xl w-full-screen text-h2text">
+          {TEXTS[index % TEXTS.length]}
+          </TextTransition>
+        </h1>
+      </ParallaxLayer>
       {/* Description Layer */}
       <ParallaxLayer
         offset={0.7}
