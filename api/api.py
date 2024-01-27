@@ -3,7 +3,7 @@ import requests
 import cohere
 import os
 from dotenv import load_dotenv
-
+from TTS.api import TTS
 load_dotenv()
 
 app = Flask(__name__)
@@ -13,6 +13,7 @@ KINTONE_API_URL = os.getenv('KINTONE_API_URL')
 KINTONE_API_TOKEN = os.getenv('KINTONE_API_TOKEN')
 KINTONE_APP_ID = int(os.getenv('KINTONE_APP_ID'))  # Convert to int
 co = cohere.Client(os.getenv('COHERE_KEY'))
+tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=True)
 
 # Function to interact with Kintone API
 def kintone_request(method, payload=None, record_id=None):
@@ -95,7 +96,14 @@ def analyze_person(person_id):
             # perform web search before answering the question. You can also use your own custom connector.
             connectors=[{"id": "web-search"}]
             )
+
+            # generate speech by cloning a voice using default settings
+        tts.tts_to_file(text="It took me quite a long time to develop a voice, and now that I have it I'm not going to be silent.",
+            file_path="output.wav",
+            speaker_wav="/content/3t8ybkh2ly76swgnqlm6eiqg9fabnuu.wav",
+            language="en")
         return jsonify({'message': 'Analysis completed'})
+
     else:
         return jsonify({'message': 'Person not found'}), 404
 
