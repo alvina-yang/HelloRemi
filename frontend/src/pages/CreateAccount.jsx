@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getPatientCode, setPatientCode, setPatientName } from '../GlobalData';
 
 const CreateAccount = () => {
   const navigate = useNavigate();
   const [isSigningUpPatient, setIsSigningUpPatient] = useState(null);
-  const [generatedCode] = useState(Math.random().toString(36).substr(2, 9)); // Random code generation
+  const [patientFirstName, setPatientFirstName] = useState('');
+  const [patientLastName, setPatientLastName] = useState('');
+  const [patientCodeInput, setPatientCodeInput] = useState('');
+
+  
+  useEffect(() => {
+    if (!getPatientCode()) {
+      setPatientCode(Math.random().toString(36).substr(2, 9));
+    }
+  }, []);
 
   const handleCreateAccount = () => {
-    // Placeholder for account creation logic
-    navigate('/home'); // Navigate to home after account creation
+    if (isSigningUpPatient) {
+      const fullName = patientFirstName && patientLastName ? `${patientFirstName} ${patientLastName}` : 'Jane Doe';
+      setPatientName(fullName);
+    } else {
+      setPatientCode(patientCodeInput);
+    }
+    navigate('/home');
   };
 
   if (isSigningUpPatient === null) {
@@ -35,13 +50,25 @@ const CreateAccount = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black p-6">
-      <h1 className="text-2xl font-bold mb-6">Create an Account</h1>
-      <h2> Patient Access Code: {generatedCode}</h2>
-      <div className="w-full max-w-md bg-gray p-6 rounded shadow-md">
+      <h1 className="text-2xl font-bold mb-6 text-white">Create an Account</h1>
+      {isSigningUpPatient && <h2 className="text-white">Patient Access Code: {getPatientCode()}</h2>}
+      <div className="w-full max-w-md bg-gray-700 p-6 rounded shadow-md">
         {isSigningUpPatient ? (
           <div className="flex flex-col space-y-4">
-            <input className="p-2 border border-gray-300 rounded" type="text" placeholder="Patient First Name" />
-            <input className="p-2 border border-gray-300 rounded" type="text" placeholder="Patient Last Name" />
+            <input 
+              className="p-2 border border-gray-300 rounded" 
+              type="text" 
+              placeholder="Patient First Name" 
+              value={patientFirstName}
+              onChange={(e) => setPatientFirstName(e.target.value)}
+            />
+            <input 
+              className="p-2 border border-gray-300 rounded" 
+              type="text" 
+              placeholder="Patient Last Name" 
+              value={patientLastName}
+              onChange={(e) => setPatientLastName(e.target.value)}
+            />
             <input className="p-2 border border-gray-300 rounded" type="text" placeholder="Patient Gender" />
             <input className="p-2 border border-gray-300 rounded" type="text" placeholder="Your Relationship to Patient" />
           </div>
