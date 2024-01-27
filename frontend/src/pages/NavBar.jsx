@@ -24,35 +24,47 @@ const NavBar = () => {
   ];
 
   return (
-    <div className=' flex bg-primary items-center p-4'>
-      <MenuIcon onClick={toggleDrawer(true)} style={{ color: '#a2979d', cursor: 'pointer' }} />
+    <>
+      <MenuIcon
+  onClick={toggleDrawer(true)}
+  style={{
+    color: '#a2979d',
+    cursor: 'pointer',
+    position: 'absolute',
+    top: 8,
+    left: 0,
+    zIndex: 1000,
+    fontSize: '2rem' // Set the font size to 2rem (adjust as needed)
+  }}
+/>
+
       <Drawer
         anchor={'left'}
         open={drawerOpen}
         onClose={toggleDrawer(false)}
         PaperProps={{
-          style: {backgroundColor: '#354a55' }
+          style: { backgroundColor: '#354a55' },
         }}
       >
         <List>
           {menuItems.map((item, index) => (
-            <ListItem 
-              button 
-              key={index} 
-              component={Link} 
-              to={item.path} 
+            <ListItem
+              button
+              key={index}
+              component={Link}
+              to={item.path}
               onClick={toggleDrawer(false)}
               style={{ color: '#a2979d'}}
             >
-              <ListItemText 
-                 primary={item.text} 
-                primaryTypographyProps={{ style: { fontWeight: 'bold' } }} 
+              <ListItemText
+                primary={item.text}
+                primaryTypographyProps={{ style: { fontWeight: 'bold' } }}
               />
             </ListItem>
           ))}
         </List>
       </Drawer>
-    </div>
+    </>
   );
 };
 

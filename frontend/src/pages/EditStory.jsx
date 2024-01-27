@@ -19,6 +19,9 @@ const EditStory = () => {
   return (
     <div className="flex flex-col h-screen">
       <NavBar />
+      <div className='bg-secondary p-3 text-center text-h1text text-xl font-bold'>
+        Edit Your Existing Story
+      </div>
       <div className="flex-grow p-4 overflow-auto bg-primary">
         {/* Messages will be displayed here */}
         <div className="space-y-2">

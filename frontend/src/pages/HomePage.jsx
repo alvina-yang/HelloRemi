@@ -6,6 +6,9 @@ const HomePage = () => {
   return (
     <div>
       <NavBar />
+      <div className='bg-secondary p-3 text-center text-h1text text-xl font-bold'>
+        Home
+      </div>
       <div className="flex flex-col items-center justify-center min-h-screen bg-primary p-6">
       <h1 className="text-4xl text-h1text font-bold text-center mb-4">Welcome to your personalized story for {getPatientName()}</h1>
       <p className="mb-6 text-lg text-h2text text-center">

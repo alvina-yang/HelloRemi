@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { members } from '../constants/Index';
 import NavBar from './NavBar';
+import { getPatientName } from '../GlobalData';
 
 const CurrentStories = () => {
   const [selectedStory, setSelectedStory] = useState(null);
@@ -12,6 +13,9 @@ const CurrentStories = () => {
   return (
     <div className='bg-primary'>
       <NavBar />
+      <div className='bg-secondary p-3 text-center text-h1text text-xl font-bold'>
+        {getPatientName()}'s Stories
+      </div>
       <div className="p-6 min-h-screen bg-primary flex flex-col">
         <h1 className="text-2xl text-h1text font-bold mb-6">Current Stories</h1>
         <div className="flex bg-primary flex-wrap justify-center gap-4">
