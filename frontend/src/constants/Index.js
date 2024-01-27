@@ -5,7 +5,7 @@ const members = [
         relationship: "Daughter",
         username: "janedoe",
         password: "123",
-        story: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        story: "Lorem ipsum dolor  amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
         name: "Clark Kent",
@@ -37,4 +37,23 @@ const members = [
     }
 ];
 
-export {members, leaves, mugunghwa, pinkwhite, sunflower};
+const patients = [
+    {
+        Name: "Bob Ross",
+        patientCode:123456789
+    },
+    {
+        Name: "Elon Musk",
+        patientCode:121212
+    },
+]
+
+const relations = [
+    {
+        patientCode: 123456789,
+        userNames: ["trisprior", "harrypotter", "katnisseverdeen"] 
+    }
+];
+
+
+export {members, leaves, mugunghwa, pinkwhite, sunflower, relations, patients};

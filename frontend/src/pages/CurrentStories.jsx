@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { members } from '../constants/Index';
 import NavBar from './NavBar';
-import { getPatientName } from '../GlobalData';
+import { getPatientName } from '../LocalData';
 
 const CurrentStories = () => {
   const [selectedStory, setSelectedStory] = useState(null);
