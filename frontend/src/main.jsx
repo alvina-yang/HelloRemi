@@ -13,6 +13,7 @@ import EditStory from './pages/EditStory';
 import CurrentStories from './pages/CurrentStories';
 import SignInPatient from './pages/patient/SignInPatient';
 import PatientHomePage from './pages/patient/PatientHomePage';
+import MemberProfilePage from './pages/patient/MemberProfilePage';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -28,6 +29,7 @@ root.render(
         <Route path="/current-stories" element={<CurrentStories />} />
         <Route path="/signin-patient" element={<SignInPatient />}/>
         <Route path="/patient-home" element={<PatientHomePage/>}/>
+        <Route path="/member-profile" element={<MemberProfilePage />} />
         <Route path="*" element={<SignIn />} />
       </Routes>
     </Router>
