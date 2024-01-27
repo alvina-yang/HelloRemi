@@ -13,7 +13,7 @@ KINTONE_API_URL = os.getenv('KINTONE_API_URL')
 KINTONE_API_TOKEN = os.getenv('KINTONE_API_TOKEN')
 KINTONE_APP_ID = int(os.getenv('KINTONE_APP_ID'))  # Convert to int
 co = cohere.Client(os.getenv('COHERE_KEY'))
-tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=True)
+tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=False)
 
 # Function to interact with Kintone API
 def kintone_request(method, payload=None, record_id=None):
@@ -36,6 +36,8 @@ def kintone_request(method, payload=None, record_id=None):
 # Route to create a person object
 @app.route('/api/persons', methods=['POST'])
 def create_person():
+    print("mentor is here")
+
     data = request.json
 
     # Example payload structure, update it based on your Kintone app structure
@@ -43,11 +45,40 @@ def create_person():
         'app': 'KINTONE_APP_ID',  # Replace with your Kintone app ID
         'record': {
             'Prompt': {'prompt': data['prompt']},
+            'Name': {'name':data['name']},
+            'Age': {'value': data['age']},
+            'DateOfBirth': {'value': data['dob']},
+            'FamilyBackground': {'value': data['family_background']},
+            'HobbiesAndInterests': {'value': data['hobbies_and_interests']},
+            'MemorableQuotes': {'value': data['memorable_quotes']},
+            'HealthAndWellness': {'value': data['health_and_wellness']},
+            'Relationship': {'value': data['relationship']},
+            'MemorableEvent': {'value': data['memorable_event']},
+            'AdditionalInformation': {'value': data['additional_information']},
+            'Tone': {'tone':data['tone']}
         }
     }
 
     response = kintone_request('POST', payload)
     return jsonify(response)
+    # return None
+
+
+
+# curl -X GET 'https://remi-domain.kintone.com/k/v1/record.json' \
+#   -H 'X-Cybozu-API-Token: dJuQZVLgE5OuZImBFZiN4e1pEPmVXqQZQEFI8X7U' \
+#   -H 'Content-Type: application/json' \
+#   -d '{"app": 2, "id": 9}'   
+
+# get - https://remi-domain.kintone.com/k/v1/record.json
+# header: {X-Cybozu-API-Token: dJuQZVLgE5OuZImBFZiN4e1pEPmVXqQZQEFI8X7U, Content-Type: application/json}
+# payload: {"app": 2, "id": 9}
+
+
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
 # Route to read a person object
 @app.route('/api/persons/<string:name>', methods=['GET'])
