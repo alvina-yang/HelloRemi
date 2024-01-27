@@ -13,7 +13,7 @@ KINTONE_API_URL = os.getenv('KINTONE_API_URL')
 KINTONE_API_TOKEN = os.getenv('KINTONE_API_TOKEN')
 KINTONE_APP_ID = int(os.getenv('KINTONE_APP_ID'))  # Convert to int
 co = cohere.Client(os.getenv('COHERE_KEY'))
-tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=True)
+tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=False)
 
 # Function to interact with Kintone API
 def kintone_request(method, payload=None, record_id=None):
@@ -60,6 +60,10 @@ def get_person(name):
         return jsonify(response['records'][0])
     else:
         return jsonify({'message': 'Person not found'}), 404
+
+@app.route('/', methods=['GET'])
+def print_hello():
+    return 'Hello world!'
 
 # Route to delete a person object
 @app.route('/api/persons/<string:name>', methods=['DELETE'])
