@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getPatientName, getPatientCode } from '../GlobalData'; // Adjust the import path as needed
+import { getPatientName, getPatientCode } from '../LocalData'; // Adjust the import path as needed
 import NavBar from './NavBar';
 const HomePage = () => {
   return (

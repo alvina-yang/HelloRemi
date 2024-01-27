@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import TextTransition, { presets } from 'react-text-transition';
 import { useState, useEffect } from 'react';
@@ -34,7 +34,7 @@ const SignIn = () => {
 
 
   return (
-    <Parallax pages={3} className='bg-primary'>
+    <Parallax pages={4} className='bg-primary'>
       <ParallaxLayer
         offset={0}
         speed={-0.2}
@@ -93,7 +93,7 @@ const SignIn = () => {
         <p className="text-lg p-8 text-center text-h2text"> It's more than a tool; it's a companion on a journey through time, unlocking the timeless joy and profound sense of belonging that only <span className=" text-peach-100 glow-on-hover hover:scale-100 cursor-pointer">nostalgia</span> can bring.</p>
       </ParallaxLayer>
 
-      {/* Sign-in Form Layer */}
+      {/* Sign-in Form Layer for Members*/}
       <ParallaxLayer
         offset={1.8}
         speed={0.1}
@@ -126,6 +126,13 @@ const SignIn = () => {
               Create an Account
             </button>
           </p>
+         
+    <p className="text-center p-2 text-h2text">
+      Want to check on a patient?
+      <Link to="/signin-patient" className="text-h1text p-2 hover:underline">
+        Enter patient code here
+      </Link>
+    </p>
         </div>
       </ParallaxLayer>
     </Parallax>

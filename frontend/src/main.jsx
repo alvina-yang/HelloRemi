@@ -11,6 +11,8 @@ import CreateAccount from './pages/CreateAccount';
 import CreateNewStory from './pages/CreateNewStory';
 import EditStory from './pages/EditStory';
 import CurrentStories from './pages/CurrentStories';
+import SignInPatient from './pages/patient/SignInPatient';
+import PatientHomePage from './pages/patient/PatientHomePage';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,6 +26,8 @@ root.render(
         <Route path="/create-new-story" element={<CreateNewStory />} />
         <Route path="/edit-story" element={<EditStory />} />
         <Route path="/current-stories" element={<CurrentStories />} />
+        <Route path="/signin-patient" element={<SignInPatient />}/>
+        <Route path="/patient-home" element={<PatientHomePage/>}/>
         <Route path="*" element={<SignIn />} />
       </Routes>
     </Router>

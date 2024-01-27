@@ -1,5 +1,5 @@
-let patientCode = '';
-let patientName = 'Jane Doe'; // Default name
+let patientCode = 123456789;
+let patientName = 'Matt Damon'; // Default name
 
 export const getPatientCode = () => patientCode;
 

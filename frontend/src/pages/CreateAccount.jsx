@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getPatientCode, setPatientCode, setPatientName } from '../GlobalData';
+import { getPatientCode, setPatientCode, setPatientName } from '../LocalData';
 
 const CreateAccount = () => {
   const navigate = useNavigate();
