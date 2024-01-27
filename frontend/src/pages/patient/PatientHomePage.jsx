@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar';
 import { members, relations } from '../../constants/Index';
 import { getPatientCode, getPatientName } from '../../LocalData';
 
 const PatientHomePage = () => {
+    const navigate = useNavigate();
     const [selectedStory, setSelectedStory] = useState(null);
     const [relatedMembers, setRelatedMembers] = useState([]);
 
@@ -20,12 +22,15 @@ const PatientHomePage = () => {
       setSelectedStory(story);
     };
 
+    const handleViewProfile = (member) => {
+      navigate('/member-profile', { state: { member } });
+    };
+
     return (
         <div className='bg-primary'>
             <div className='flex flex-col p-10 items-center'>
                 <div className="w-32 h-32 bg-tertiary rounded-full p-10 mt-6 flex items-center justify-center">
-                    {/* Placeholder for patient's image */}
-                    <span className="text-5xl p-50 font-bold text-primary">{getPatientName().charAt(0)}</span>
+                    <span className="text-5xl font-bold text-primary">{getPatientName().charAt(0)}</span>
                 </div>
                 <h1 className='text-7xl text-h1text font-bold mt-3'>{getPatientName()}</h1>
             </div>
@@ -42,6 +47,12 @@ const PatientHomePage = () => {
                             </div>
                             <h3 className="text-lg text-peach-300 font-semibold mt-2">{member.name}</h3>
                             <p className="text-sm text-peach-400">{member.relationship}</p>
+                            <button
+                                onClick={() => handleViewProfile(member)}
+                                className="mt-2 p-2 text-white bg-dustygray-800 rounded hover:bg-blue-600"
+                            >
+                                View Profile
+                            </button>
                         </div>
                     ))}
                 </div>

@@ -24,7 +24,7 @@ const CreateNewStory = () => {
       </div>
       <div className="flex-grow p-4 overflow-auto bg-primary">
         {/* Messages will be displayed here */}
-        <div className="space-y-2">
+        <div className="flex flex-col items-end space-y-2">
           {messages.map((message, index) => (
             <div key={index} className="max-w-xs break-words bg-secondary p-2 rounded">
               {message}

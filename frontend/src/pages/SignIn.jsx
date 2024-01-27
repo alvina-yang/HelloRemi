@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import TextTransition, { presets } from 'react-text-transition';
 import { useState, useEffect } from 'react';
-import { leaves, mugunghwa, pinkwhite, sunflower } from '../assets/Assets';
 import FlowerCanvas from './canvas/Flower';
 
 const SignIn = () => {
