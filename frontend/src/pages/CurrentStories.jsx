@@ -22,11 +22,11 @@ const CurrentStories = () => {
           {members.map((member, index) => (
             <div key={index} className="flex flex-col items-center">
               <div
-                className="w-24 h-24 bg-tertiary rounded-full flex items-center justify-center cursor-pointer"
+                className="w-24 h-24 rounded-full overflow-hidden flex items-center justify-center cursor-pointer"
                 onClick={() => handleSelectStory(member.story)}
+                style={{ backgroundImage: `url(${member.picture})`, backgroundSize: 'cover' }}
               >
-                {/* Placeholder for member image */}
-                <h1 className='bg-transparent text-xl font-bold text-dustyblue-950'>{member.name.charAt(0)}</h1>
+                {/* Removed the initial character rendering */}
               </div>
               <h2 className="text-lg text-peach-300 font-semibold mt-2">{member.name}</h2>
               <p className="text-sm text-peach-400">{member.relationship}</p>

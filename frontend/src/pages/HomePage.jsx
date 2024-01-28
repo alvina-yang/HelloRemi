@@ -18,9 +18,6 @@ const HomePage = () => {
         <Link to="/create-new-story" className="block w-64 px-4 py-2 text-center text-white bg-secondary rounded hover:bg-blue-600">
           Create A New Story
         </Link>
-        <Link to="/edit-story" className="block w-64 px-4 py-2 text-center text-white bg-secondary rounded hover:bg-blue-600">
-          Edit Your Story
-        </Link>
         <Link to="/current-stories" className="block w-64 px-4 py-2 text-center text-white bg-secondary rounded hover:bg-blue-600">
           {`${getPatientName()}'s Current Stories`}
         </Link>

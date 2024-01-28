@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
+import { getStory } from '../LocalData';
 
 const CreateNewStory = () => {
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const story = getStory();
+    if (story) {
+      setMessages([...messages, { text: story, fromBot: true }]);
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -12,38 +20,8 @@ const CreateNewStory = () => {
   const handleSendMessage = async () => {
     const trimmedInput = inputValue.trim();
     if (trimmedInput) {
-      // Add the message to local state
-      setMessages([...messages, trimmedInput]);
-
-      // Prepare data to be sent
-      const dataToSend = {
-        message: trimmedInput
-      };
-
-      // API endpoint - replace with your actual endpoint
-      const apiEndpoint = 'https://localhost:723432';
-
-      try {
-        const response = await fetch(apiEndpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(dataToSend)
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        // You can process the response here if needed
-        console.log("Message sent successfully");
-      } catch (error) {
-        console.error('Failed to send message:', error);
-      }
-
-      // Clear the input after sending the message
-      setInputValue('');
+      setMessages([...messages, { text: trimmedInput, fromBot: false }]);
+      setInputValue(''); // Clear the input after sending the message
     }
   };
 
@@ -54,11 +32,10 @@ const CreateNewStory = () => {
         Create A New Story
       </div>
       <div className="flex-grow p-4 overflow-auto bg-primary">
-        {/* Messages will be displayed here */}
-        <div className="flex flex-col items-end space-y-2">
+        <div className="flex flex-col space-y-2">
           {messages.map((message, index) => (
-            <div key={index} className="max-w-xs break-words bg-secondary p-2 rounded">
-              {message}
+            <div key={index} className={`max-w-xs break-words p-2 rounded ${message.fromBot ? 'bg-blue-600' : 'bg-secondary self-end'}`}>
+              {message.text}
             </div>
           ))}
         </div>

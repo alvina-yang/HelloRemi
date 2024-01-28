@@ -19,7 +19,6 @@ const NavBar = () => {
   const menuItems = [
     { text: 'Home', path: '/home' },
     { text: 'Create New Story', path: '/create-new-story' },
-    { text: 'Edit Story', path: '/edit-story' },
     { text: 'Current Stories', path: '/current-stories' },
   ];
 

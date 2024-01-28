@@ -11,7 +11,7 @@ let memorableQuotes = '';
 let relationship = '';
 let memorableEvent = '';
 let additionalInformation = '';
-
+let story = "";
 // Patient Code
 export const getPatientCode = () => patientCode;
 export const setPatientCode = (code) => {
@@ -89,3 +89,8 @@ export const getAdditionalInformation = () => additionalInformation;
 export const setAdditionalInformation = (newAdditionalInformation) => {
   additionalInformation = newAdditionalInformation;
 };
+
+export const getStory = () => story;
+export const setStory = (newStory) => {story = newStory};
+
+
