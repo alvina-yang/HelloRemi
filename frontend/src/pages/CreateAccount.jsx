@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  getPatientCode, setPatientCode, setPatientName, setUsername, setPassword, 
-  setAge, setDOB, setRelationship, setFamilyBackground, setHobbiesAndInterests, 
+  getPatientCode, setPatientCode, setPatientName, setUsername, setPassword,
+  setAge, setDOB, setRelationship, setFamilyBackground, setHobbiesAndInterests,
   setMemorableEvent, setMemorableQuotes, setAdditionalInformation
 } from '../LocalData';
 
@@ -44,7 +44,7 @@ const CreateAccount = () => {
 
     setUsername(username);
     setPassword(password);
-    setPatientName(name); 
+    setPatientName(name);
     setAge(age);
     setDOB(dob);
     setRelationship(relationship);
@@ -55,21 +55,21 @@ const CreateAccount = () => {
     setAdditionalInformation(additionalInformation);
 
     const accountData = {
-      username,
-      password,
-      name,
-      age,
-      dob,
-      familyBackground,
-      hobbiesAndInterests,
-      memorableQuotes,
-      relationship,
-      memorableEvent,
-      additionalInformation,
+      username: username,
+      password: password,
+      name: name,
+      age: age,
+      dob: dob,
+      family_background: familyBackground,
+      hobbies_and_interests: hobbiesAndInterests,
+      memorable_quotes: memorableQuotes,
+      relationship: relationship,
+      memorable_event: memorableEvent,
+      additional_information: additionalInformation,
     };
 
     // API endpoint - ensure this is correct and server is running
-    const apiEndpoint = 'https://local:5177';
+    const apiEndpoint = "http://127.0.0.1:5000/api/create_person";
 
     try {
       const response = await fetch(apiEndpoint, {
@@ -98,13 +98,13 @@ const CreateAccount = () => {
       <div className="flex flex-col items-center justify-center h-screen bg-primary">
         <h1 className="text-3xl font-bold text-h1text mb-4">Are you signing up a patient?</h1>
         <div className="flex space-x-4">
-          <button 
+          <button
             onClick={() => setIsSigningUpPatient(true)}
             className="px-4 py-2 bg-secondary text-white rounded hover:bg-gray-600"
           >
             Yes
           </button>
-          <button 
+          <button
             onClick={() => setIsSigningUpPatient(false)}
             className="px-4 py-2 bg-secondary text-white rounded hover:bg-gray-600"
           >
@@ -123,27 +123,27 @@ const CreateAccount = () => {
         <div className="flex flex-col space-y-4">
           {isSigningUpPatient && (
             <>
-              <input 
-                className="p-2 border bg-blue-900 border-peach-300 rounded" 
-                type="text" 
-                placeholder="Patient First Name" 
+              <input
+                className="p-2 border bg-blue-900 border-peach-300 rounded"
+                type="text"
+                placeholder="Patient First Name"
                 value={patientFirstName}
                 onChange={(e) => setPatientFirstName(e.target.value)}
               />
-              <input 
-                className="p-2 border bg-blue-900 border-peach-300 rounded" 
-                type="text" 
-                placeholder="Patient Last Name" 
+              <input
+                className="p-2 border bg-blue-900 border-peach-300 rounded"
+                type="text"
+                placeholder="Patient Last Name"
                 value={patientLastName}
                 onChange={(e) => setPatientLastName(e.target.value)}
               />
             </>
           )}
           {!isSigningUpPatient && (
-            <input 
-              className="p-2 border bg-blue-900 border-peach-300 rounded" 
-              type="text" 
-              placeholder="Enter Patient Code" 
+            <input
+              className="p-2 border bg-blue-900 border-peach-300 rounded"
+              type="text"
+              placeholder="Enter Patient Code"
               value={patientCodeInput}
               onChange={(e) => setPatientCodeInput(e.target.value)}
             />
@@ -160,8 +160,8 @@ const CreateAccount = () => {
           <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={memorableQuotes} type="text" placeholder="Your Memorable quotes" onChange={(e) => setMemorableQuotesLocal(e.target.value)} />
           <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={memorableEvent} type="text" placeholder="Your Memorable event" onChange={(e) => setMemorableEventLocal(e.target.value)} />
           <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={additionalInformation} type="text" placeholder="Additional Information" onChange={(e) => setAdditionalInformationLocal(e.target.value)} />
-          <button 
-            onClick={handleCreateAccount} 
+          <button
+            onClick={handleCreateAccount}
             className="p-2 text-white bg-blue-500 rounded hover:bg-blue-600"
           >
             Create Account
