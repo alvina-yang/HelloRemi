@@ -46,17 +46,17 @@ const members = [
 const patients = [
     {
         Name: "Bob Ross",
-        patientCode:123456789
+        patientCode:"123456789"
     },
     {
         Name: "Elon Musk",
-        patientCode:121212
+        patientCode:"121212"
     },
 ]
 
 const relations = [
     {
-        patientCode: 123456789,
+        patientCode: "123456789",
         userNames: ["trisprior", "harrypotter", "katnisseverdeen"] 
     }
 ];

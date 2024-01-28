@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { patients } from '../../constants/Index'; // Update the path as needed
 import { setPatientCode as setGlobalPatientCode } from '../../LocalData'; // Renamed import to avoid conflict
+import { setPatientName as setGlobalPatientName } from '../../LocalData';
 
 const SignInPatient = () => {
   const [localPatientCode, setLocalPatientCode] = useState(''); // Renamed local state variable
@@ -14,6 +15,7 @@ const SignInPatient = () => {
 
     if (matchedPatient) {
       setGlobalPatientCode(localPatientCode); // Use renamed function to update global patientCode
+      setGlobalPatientName(matchedPatient.Name);
       navigate('/patient-home');
     } else {
       setErrorMessage("Invalid patient code. Please try again.");
