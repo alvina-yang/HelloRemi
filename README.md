@@ -12,6 +12,10 @@ Remi is a tool with a web-based application and an answering machine designed to
 - **Memory Aids**: Through images, familiar stories, and relationship mapping, HelloRemi assists patients in remembering their loved ones.
 - **User-Friendly Interface**: Designed with simplicity and ease of use in mind, making it accessible to users of all ages.
 
+## Tools
+- **Front-end**: The front end was created using React, Javascript, Three.js, and Tailwind.css. React coupled with Tailwind.css facilitated for efficient design while Three.js allowed us to encorperate 3D interactive objects onto our website.
+- **Back-end**: 
+
 ## Getting Started
 To get started with HelloRemi, follow these steps:
 1. Clone the repository to your local machine.
