@@ -1,4 +1,4 @@
-let patientCode = 123456789;
+let patientCode = '';
 let patientName = 'Matt Damon'; // Default name
 
 export const getPatientCode = () => patientCode;
