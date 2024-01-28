@@ -1,29 +1,93 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getPatientCode, setPatientCode, setPatientName } from '../LocalData';
+import { getPatientCode, setPatientCode, setPatientName, setPatientFirstName, setPatientLastName, setUsername, setPassword, setAge, 
+  setDOB, setRelationship, setFamilyBackground, setHobbiesAndInterests, setMemorableEvent, setMemorableQuotes, setAdditionalInformation, 
+  getUsername, getPassword, getName, getAge, getDOB, getFamilyBackground, getHobbiesAndInterests, getMemorableQuotes, getRelationship, getMemorableEvent, 
+  getAdditionalInformation} from '../LocalData';
 
 const CreateAccount = () => {
   const navigate = useNavigate();
+  // State for patient sign up
   const [isSigningUpPatient, setIsSigningUpPatient] = useState(null);
   const [patientFirstName, setPatientFirstName] = useState('');
   const [patientLastName, setPatientLastName] = useState('');
   const [patientCodeInput, setPatientCodeInput] = useState('');
 
-  
+   // State for additional fields
+   const [username, setUsername] = useState('');
+   const [password, setPassword] = useState('');
+   const [name, setName] = useState('');
+   const [age, setAge] = useState('');
+   const [dob, setDOB] = useState(''); // Date of Birth
+   const [familyBackground, setFamilyBackground] = useState('');
+   const [hobbiesAndInterests, setHobbiesAndInterests] = useState('');
+   const [memorableQuotes, setMemorableQuotes] = useState('');
+   const [relationship, setRelationship] = useState('');
+   const [memorableEvent, setMemorableEvent] = useState('');
+   const [additionalInformation, setAdditionalInformation] = useState('');
   useEffect(() => {
     if (!getPatientCode()) {
       setPatientCode(Math.random().toString(36).substr(2, 9));
     }
   }, []);
 
-  const handleCreateAccount = () => {
+  const handleCreateAccount =async () => {
     if (isSigningUpPatient) {
       const fullName = patientFirstName && patientLastName ? `${patientFirstName} ${patientLastName}` : 'Jane Doe';
       setPatientName(fullName);
+    
     } else {
       setPatientCode(patientCodeInput);
     }
+    setUsername(username);
+    setPassword(password);
+    setName(name); // If you have separate first and last name, consider renaming this to setFirstName
+    setAge(age);
+    setDOB(dob);
+    setRelationship(relationship);
+    setFamilyBackground(familyBackground);
+    setHobbiesAndInterests(hobbiesAndInterests);
+    setMemorableEvent(memorableEvent);
+    setMemorableQuotes(memorableQuotes);
+    setAdditionalInformation(additionalInformation);
     navigate('/home');
+
+    const accountData = {
+      username: getUsername(),
+      password: getPassword(),
+      name: getName(),
+      age: getAge(),
+      dob: getDOB(),
+      familyBackground: getFamilyBackground(),
+      hobbiesAndInterests: getHobbiesAndInterests(),
+      memorableQuotes: getMemorableQuotes(),
+      relationship: getRelationship(),
+      memorableEvent: getMemorableEvent(),
+      additionalInformation: getAdditionalInformation(),
+    };
+  
+    // API endpoint - replace with your actual endpoint
+    const apiEndpoint = 'https://local:5177';
+  
+    try {
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(accountData)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const responseData = await response.json();
+      console.log(responseData);
+      navigate('/home');
+    } catch (error) {
+      console.error('Failed to create account:', error);
+    }
   };
 
   if (isSigningUpPatient === null) {
@@ -69,20 +133,25 @@ const CreateAccount = () => {
               value={patientLastName}
               onChange={(e) => setPatientLastName(e.target.value)}
             />
-            <input className="p-2 border bg-blue-900 border-peach-300 rounded" type="text" placeholder="Patient Gender" />
-            <input className="p-2 border bg-blue-900 border-peach-300 rounded" type="text" placeholder="Your Relationship to Patient" />
           </div>
         ) : (
           <div className="flex flex-col space-y-4">
             <input className="p-2 border bg-blue-900 border-peach-300 rounded" type="text" placeholder="Enter Patient Code" />
-            <input className="p-2 border bg-blue-900 border-peach-3000 rounded" type="text" placeholder="Your Relationship to Patient" />
           </div>
         )}
         <div className="flex flex-col space-y-4 mt-4">
-          <input className="p-2 border bg-blue-900 border-peach-300 rounded" type="text" placeholder="Your First Name" />
-          <input className="p-2 border bg-blue-900 border-peach-300 rounded" type="text" placeholder="Your Last Name" />
-          <input className="p-2 border bg-blue-900 border-peach-300 rounded" type="text" placeholder="Your Username" />
-          <input className="p-2 border bg-blue-900 border-peach-300 rounded" type="password" placeholder="Your Password" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={name} type="text" placeholder="Your First Name" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={lastname} type="text" placeholder="Your Last Name" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={username} type="text" placeholder="Your Username" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded"  value={password} type="password" placeholder="Your Password" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded"  value={age} type="text" placeholder="Your Age" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded"  value={username} type="date" placeholder="Your Date of Birth" />
+          <input className="p-2 border bg-blue-900 border-peach-3000 rounded"  value={relationship} type="text" placeholder="Your Relationship to Patient" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded"  value={familyBackground} type="text" placeholder="Your Family Background" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded"  value={hobbiesAndInterests} type="text" placeholder="Your Hobbies and Interests" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded"  value={memorableQuotes} type="text" placeholder="Your Memorable quotes" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded"  value={memorableEvent} type="text" placeholder="Your Memorable event" />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded"  value={additionalInformation} type="text" placeholder="Additional Information" />
           <button 
             onClick={handleCreateAccount} 
             className="p-2 text-white bg-blue-500 rounded hover:bg-blue-600"
