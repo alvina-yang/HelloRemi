@@ -1,47 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getPatientCode, setPatientCode, setPatientName, setPatientFirstName, setPatientLastName, setUsername, setPassword, setAge, 
-  setDOB, setRelationship, setFamilyBackground, setHobbiesAndInterests, setMemorableEvent, setMemorableQuotes, setAdditionalInformation, 
-  getUsername, getPassword, getName, getAge, getDOB, getFamilyBackground, getHobbiesAndInterests, getMemorableQuotes, getRelationship, getMemorableEvent, 
-  getAdditionalInformation} from '../LocalData';
+import {
+  getPatientCode, setPatientCode, setPatientName, setUsername, setPassword, 
+  setAge, setDOB, setRelationship, setFamilyBackground, setHobbiesAndInterests, 
+  setMemorableEvent, setMemorableQuotes, setAdditionalInformation, getUsername,
+  getPassword, getName, getAge, getDOB, getFamilyBackground, getHobbiesAndInterests, 
+  getMemorableQuotes, getRelationship, getMemorableEvent, getAdditionalInformation
+} from '../LocalData';
 
 const CreateAccount = () => {
   const navigate = useNavigate();
+
   // State for patient sign up
   const [isSigningUpPatient, setIsSigningUpPatient] = useState(null);
   const [patientFirstName, setPatientFirstName] = useState('');
   const [patientLastName, setPatientLastName] = useState('');
   const [patientCodeInput, setPatientCodeInput] = useState('');
 
-   // State for additional fields
-   const [username, setUsername] = useState('');
-   const [password, setPassword] = useState('');
-   const [name, setName] = useState('');
-   const [age, setAge] = useState('');
-   const [dob, setDOB] = useState(''); // Date of Birth
-   const [familyBackground, setFamilyBackground] = useState('');
-   const [hobbiesAndInterests, setHobbiesAndInterests] = useState('');
-   const [memorableQuotes, setMemorableQuotes] = useState('');
-   const [relationship, setRelationship] = useState('');
-   const [memorableEvent, setMemorableEvent] = useState('');
-   const [additionalInformation, setAdditionalInformation] = useState('');
+  // State for additional fields
+  const [username, setUsernameLocal] = useState('');
+  const [password, setPasswordLocal] = useState('');
+  const [name, setName] = useState('');
+  const [age, setAgeLocal] = useState('');
+  const [dob, setDOBLocal] = useState(''); // Date of Birth
+  const [relationship, setRelationshipLocal] = useState('');
+  const [familyBackground, setFamilyBackgroundLocal] = useState('');
+  const [hobbiesAndInterests, setHobbiesAndInterestsLocal] = useState('');
+  const [memorableQuotes, setMemorableQuotesLocal] = useState('');
+  const [memorableEvent, setMemorableEventLocal] = useState('');
+  const [additionalInformation, setAdditionalInformationLocal] = useState('');
+
   useEffect(() => {
     if (!getPatientCode()) {
       setPatientCode(Math.random().toString(36).substr(2, 9));
     }
   }, []);
 
-  const handleCreateAccount =async () => {
+  const handleCreateAccount = async () => {
     if (isSigningUpPatient) {
       const fullName = patientFirstName && patientLastName ? `${patientFirstName} ${patientLastName}` : 'Jane Doe';
       setPatientName(fullName);
-    
     } else {
       setPatientCode(patientCodeInput);
     }
+
     setUsername(username);
     setPassword(password);
-    setName(name); // If you have separate first and last name, consider renaming this to setFirstName
+    setName(name); 
     setAge(age);
     setDOB(dob);
     setRelationship(relationship);
@@ -65,10 +70,10 @@ const CreateAccount = () => {
       memorableEvent: getMemorableEvent(),
       additionalInformation: getAdditionalInformation(),
     };
-  
-    // API endpoint - replace with your actual endpoint
+
+    // API endpoint - ensure this is correct and server is running
     const apiEndpoint = 'https://local:5177';
-  
+
     try {
       const response = await fetch(apiEndpoint, {
         method: 'POST',
@@ -77,11 +82,11 @@ const CreateAccount = () => {
         },
         body: JSON.stringify(accountData)
       });
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       const responseData = await response.json();
       console.log(responseData);
       navigate('/home');
