@@ -9,10 +9,41 @@ const CreateNewStory = () => {
     setInputValue(e.target.value);
   };
 
-  const handleSendMessage = () => {
-    if (inputValue.trim()) {
-      setMessages([...messages, inputValue.trim()]);
-      setInputValue(''); // Clear the input after sending the message
+  const handleSendMessage = async () => {
+    const trimmedInput = inputValue.trim();
+    if (trimmedInput) {
+      // Add the message to local state
+      setMessages([...messages, trimmedInput]);
+
+      // Prepare data to be sent
+      const dataToSend = {
+        message: trimmedInput
+      };
+
+      // API endpoint - replace with your actual endpoint
+      const apiEndpoint = 'https://localhost:723432';
+
+      try {
+        const response = await fetch(apiEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dataToSend)
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // You can process the response here if needed
+        console.log("Message sent successfully");
+      } catch (error) {
+        console.error('Failed to send message:', error);
+      }
+
+      // Clear the input after sending the message
+      setInputValue('');
     }
   };
 
@@ -41,7 +72,7 @@ const CreateNewStory = () => {
             type="text"
             value={inputValue}
             onChange={handleInputChange}
-            placeholder="Message HelloRemi"
+            placeholder="Message HelloRemi by entering your favourite memory."
             className="flex-grow p-2 bg-primary rounded"
           />
           <button
