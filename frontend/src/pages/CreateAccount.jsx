@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   getPatientCode, setPatientCode, setPatientName, setUsername, setPassword,
   setAge, setDOB, setRelationship, setFamilyBackground, setHobbiesAndInterests,
-  setMemorableEvent, setMemorableQuotes, setAdditionalInformation
+  setMemorableEvent, setMemorableQuotes, setAdditionalInformation, getDiscord, setDiscord as setDiscordGlobal
 } from '../LocalData';
 
 const CreateAccount = () => {
@@ -26,7 +26,7 @@ const CreateAccount = () => {
   const [hobbiesAndInterests, setHobbiesAndInterestsLocal] = useState('');
   const [memorableQuotes, setMemorableQuotesLocal] = useState('');
   const [memorableEvent, setMemorableEventLocal] = useState('');
-  const [additionalInformation, setAdditionalInformationLocal] = useState('');
+  const [discord, setDiscordLocal] = useState('');
 
   useEffect(() => {
     if (!getPatientCode()) {
@@ -52,7 +52,7 @@ const CreateAccount = () => {
     setHobbiesAndInterests(hobbiesAndInterests);
     setMemorableEvent(memorableEvent);
     setMemorableQuotes(memorableQuotes);
-    setAdditionalInformation(additionalInformation);
+    setDiscordGlobal(discord);
 
     const accountData = {
       username: username,
@@ -65,7 +65,7 @@ const CreateAccount = () => {
       memorable_quotes: memorableQuotes,
       relationship: relationship,
       memorable_event: memorableEvent,
-      additional_information: additionalInformation,
+      discord: discord,
     };
 
     // API endpoint - ensure this is correct and server is running
@@ -159,7 +159,7 @@ const CreateAccount = () => {
           <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={hobbiesAndInterests} type="text" placeholder="Your Hobbies and Interests" onChange={(e) => setHobbiesAndInterestsLocal(e.target.value)} />
           <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={memorableQuotes} type="text" placeholder="Your Memorable quotes" onChange={(e) => setMemorableQuotesLocal(e.target.value)} />
           <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={memorableEvent} type="text" placeholder="Your Memorable event" onChange={(e) => setMemorableEventLocal(e.target.value)} />
-          <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={additionalInformation} type="text" placeholder="Additional Information" onChange={(e) => setAdditionalInformationLocal(e.target.value)} />
+          <input className="p-2 border bg-blue-900 border-peach-300 rounded" value={discord} type="text" placeholder="Your Discord" onChange={(e) => setDiscordLocal(e.target.value)} />
           <button
             onClick={handleCreateAccount}
             className="p-2 text-white bg-blue-500 rounded hover:bg-blue-600"

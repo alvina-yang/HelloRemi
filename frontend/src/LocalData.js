@@ -12,6 +12,8 @@ let relationship = '';
 let memorableEvent = '';
 let additionalInformation = '';
 let story = "";
+let discord = "";
+
 // Patient Code
 export const getPatientCode = () => patientCode;
 export const setPatientCode = (code) => {
@@ -93,4 +95,6 @@ export const setAdditionalInformation = (newAdditionalInformation) => {
 export const getStory = () => story;
 export const setStory = (newStory) => {story = newStory};
 
+export const getDiscord = () => discord;
+export const setDiscord = (newDiscord) => {discord = newDiscord};
 
