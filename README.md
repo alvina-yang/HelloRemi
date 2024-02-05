@@ -1,5 +1,5 @@
 # HelloRemi
-
+![image](https://github.com/alvina-yang/HelloRemi/assets/122567598/df9e28bb-b5f1-4b18-957e-c93c346ccb6d)
 ## Tagline
 Remember Me
 
